@@ -7,8 +7,24 @@
 	let dataPromise;
 	let method = 1;
 	let chat_id;
+	let author;
+	let message;
 	async function handleSubmit() {
-		dataPromise = fetch(`/api/${method}/${chat_id}`, { method: "POST" }).then(
+		if(!chat_id) {
+			alert("Follow the instructions above to get your chat id")
+			return;
+		}
+
+		if(!author) {
+			alert("Enter your name in the author field")
+			return;
+		}
+		if(!message) {
+			alert("Enter your name in the message field")
+			return;
+		}
+
+		dataPromise = fetch(`/api/${method}/${chat_id}/${author}/${message}`, { method: "POST" }).then(
 			(response) => {
 				return response.json();
 			}
@@ -28,10 +44,11 @@
 </script>
 
 <section class="steps">
+	<h1>Instructions for setting up bot</h1>
 	<ul>
 		<li>Open telegram</li>
 		<li>Type in @EconomicsDesignBot</li>
-		<li>Press /start</li>
+		<li>Press or type in '/start'</li>
 		<li>Copy the response which represents the chat id</li>
 		<li>Paste it in the chat id field below</li>
 	</ul>
@@ -39,7 +56,7 @@
 
 <form on:submit|preventDefault={handleSubmit}>
 	<fieldset>
-		<legend>Do stuff</legend>
+		<legend>Get data or simulate error</legend>
 		<label>
 			<input type="radio" bind:group={method} name="method" value={1} />
 			Get Data
@@ -47,11 +64,29 @@
 
 		<label>
 			<input type="radio" bind:group={method} name="method" value={2} />
-			Cause Error
+			Simulate Error
+		</label>
+		<br />
+		<br />
+
+		<label class="chatid">
+			Chat id
+			<input type="text" name="chat_id" bind:value={chat_id}>
+		</label>
+		<br />
+		<br />
+
+		<label class="author">
+			Author
+			<input type="text" name="author" bind:value={author}>
 		</label>
 
-		<label>
-			<input type="text" name="chat_id" bind:value={chat_id}>
+		<br />
+		<br />
+
+		<label class="message">
+			Message
+			<input type="text" name="message" bind:value={message}>
 		</label>
 
 		<br />
@@ -90,7 +125,7 @@
 
 	<section class="errors">
 		{#if errors}
-			<h1>Number of errors {errors.length}</h1>
+			<h1>Number of errors: {errors.length}</h1>
 			{#each errors as error, i}
 				<span>{i+1}</span><Error {...error} />
 			{/each}
@@ -106,5 +141,9 @@
 
 	span {
 		display: inline;
+	}
+
+	li {
+		list-style: decimal;
 	}
 </style>

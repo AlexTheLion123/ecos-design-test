@@ -7,7 +7,7 @@ export async function post(request) {
     if (request.params.method === '1') {
 
         try {
-            const response = await getData(request.params.chatid)
+            const response = await getData(request.params.chatid, request.params.author, request.params.message)
             const data = (await response.json()).data;
             console.log("no error");
             return {
@@ -17,7 +17,7 @@ export async function post(request) {
                 }
             }
         } catch (error) {
-            addDocAndEmail(request.params.chatid)
+            addDocAndEmail(request.params.chatid, request.params.author, request.params.message)
 
 
             // error
@@ -28,7 +28,7 @@ export async function post(request) {
             };
         }
     } else {
-        addDocAndEmail(request.params.chatid)
+        addDocAndEmail(request.params.chatid, request.params.author, request.params.message)
 
         return {
             status: 400,
@@ -39,7 +39,7 @@ export async function post(request) {
 
 }
 
-async function getData(chatid) {
+async function getData(chatid, author, message) {
     try {
         return fetch(
             "https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest",
@@ -50,15 +50,15 @@ async function getData(chatid) {
             }
         );
     } catch (err) {
-        addDocAndEmail(chatid)
+        addDocAndEmail(chatid, author, message)
         throw new Error(err);
         // error
     }
 }
 
 
-function addDocAndEmail(chat_id: number) {
-    addDocument({ ActionCode: 'Get data', Error: 'Simulated error', Timezone: (new Date()).getTimezoneOffset(), Author: 'Alex', Date: new Date() });
+function addDocAndEmail(chat_id: number, author: string, message: string) {
+    addDocument({ ActionCode: 'Get data', Error: 'Simulated error', Timezone: (new Date()).getTimezoneOffset(), Author: author, Date: new Date() });
 
-    bot.api.sendMessage(chat_id, "Hi, there was an error!");
+    bot.api.sendMessage(chat_id, `Hi ${author}, there was an error in your database:\n\n${message}`);
 }
