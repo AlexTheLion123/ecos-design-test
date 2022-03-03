@@ -5,7 +5,7 @@
 	import { onSnapshot } from "firebase/firestore";
 
 	let dataPromise;
-	let method = 1;
+	export let method;
 	let chat_id;
 	let author;
 	let message;
