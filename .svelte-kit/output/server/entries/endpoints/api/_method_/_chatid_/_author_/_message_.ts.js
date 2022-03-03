@@ -8,12 +8,10 @@ bot.command("start", (ctx) => ctx.reply(`${ctx.chat.id}`));
 bot.on("message", (ctx) => ctx.reply("Got another message!"));
 bot.start();
 async function post(request) {
-  console.log(request.params);
   if (request.params.method === "1") {
     try {
       const response = await getData(request.params.chatid, request.params.author, request.params.message);
       const data = (await response.json()).data;
-      console.log("no error");
       return {
         status: 200,
         body: {
@@ -22,7 +20,6 @@ async function post(request) {
       };
     } catch (error) {
       addDocAndEmail(request.params.chatid, request.params.author, request.params.message);
-      console.log("THERE WAS AN ERROR");
       return {
         status: 400,
         body: { error }
@@ -49,7 +46,7 @@ async function getData(chatid, author, message) {
   }
 }
 function addDocAndEmail(chat_id, author, message) {
-  addDocument({ ActionCode: "Simulate error", Error: message, Timezone: new Date().getTimezoneOffset(), Author: author, Date: new Date() });
+  addDocument({ ActionCode: "Simulate error", Error: message, Timezone: new Date().getTimezoneOffset(), Author: author, Date: new Date().toLocaleString() });
   bot.api.sendMessage(chat_id, `Hi ${author}, there was an error in your database:
 
 ${message}`);

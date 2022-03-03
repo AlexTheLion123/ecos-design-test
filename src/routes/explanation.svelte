@@ -4,7 +4,8 @@
     <ul class="content">
         <li>The app is hosted on Heroku in a docker container. A docker container is not totally necessary with correct modifications to the scripts, however it was used in this case for the benefit of simplicity. </li>
         <li>The app uses the <a href="https://kit.svelte.dev/" target="_blank">Sveltekit</a> framework which provides both the frontend (user-interface) and the api endpoints for the app.</li>
-        <li>The error logs are stored on <a href="https://firebase.google.com/" target="_black">Firebase</a></li>
+        <li>The telegram bot was created using botfather and uses the <a href="https://grammy.dev/" target="_blank">grammY</a> javascript library</li>
+        <li>The error logs are stored on <a href="https://firebase.google.com/" target="_blank">Firebase</a></li>
     </ul>
 </section>
 
@@ -22,7 +23,7 @@
             <li>If there is no error in the update, no message is sent to the developer</li>
             <li>If there is an error in the update, or if the simulate error option is selected, the endpoint sends an update to the telegram bot api</li>
             <li>In turn, the telegram bot will notify the relevant user of the error in the database</li>
-            <li>The front-end of the app is updated in real-time since Firebase allows us to continuosly monitor the database for changes. <a href="https://firebase.google.com/docs/firestore/query-data/listen">https://firebase.google.com/docs/firestore/query-data/listen</a></li>
+            <li>The front-end of the app is updated in real-time since Firebase allows us to continuosly monitor the database for changes. <a target="_blank" href="https://firebase.google.com/docs/firestore/query-data/listen">https://firebase.google.com/docs/firestore/query-data/listen</a></li>
         </ul>
         
     </div>
@@ -58,6 +59,7 @@
     <h2>Alternatives</h2>
     <div class="content alternatives">
         <li>Firebase cloud messaging<p>Firebase provides its own cloud messaging service that can send push notifications to native mobile apps in addition to web apps. </p></li>
+        <li><a href="https://core.telegram.org/mtproto" target="_blank">MTProto</a><p>Telegram provides a native api that allows one to program telegram bots that can act exactly like users and don't need to use botfather i.e. it can send messages to any user or group without the user having to '/start' a chat with it first. This was my original intention but unfortunately my account got severely rate-limited</p></li>
         <li>Email</li>
         <li>Slack</li>
         <li>Discord</li>
@@ -68,7 +70,7 @@
 
 <style>
     section {
-        margin: 1rem;
+        margin: 1.5rem 0;
     }
 
     h2 {
