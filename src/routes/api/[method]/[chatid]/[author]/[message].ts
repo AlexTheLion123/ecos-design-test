@@ -58,7 +58,7 @@ async function getData(chatid, author, message) {
 
 
 function addDocAndEmail(chat_id: number, author: string, message: string) {
-    addDocument({ ActionCode: 'Get data', Error: 'Simulated error', Timezone: (new Date()).getTimezoneOffset(), Author: author, Date: new Date() });
+    addDocument({ ActionCode: 'Simulate error', Error: message, Timezone: (new Date()).getTimezoneOffset(), Author: author, Date: new Date() });
 
     bot.api.sendMessage(chat_id, `Hi ${author}, there was an error in your database:\n\n${message}`);
 }
