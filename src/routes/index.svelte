@@ -10,25 +10,25 @@
 	let author;
 	let message;
 	async function handleSubmit() {
-		if(!chat_id) {
-			alert("Follow the instructions above to get your chat id")
+		if (!chat_id) {
+			alert("Follow the instructions above to get your chat id");
 			return;
 		}
 
-		if(!author) {
-			alert("Enter your name in the author field")
+		if (!author) {
+			alert("Enter your name in the author field");
 			return;
 		}
-		if(!message) {
-			alert("Enter your name in the message field")
+		if (!message) {
+			alert("Enter your name in the message field");
 			return;
 		}
 
-		dataPromise = fetch(`/api/${method}/${chat_id}/${author}/${message}`, { method: "POST" }).then(
-			(response) => {
-				return response.json();
-			}
-		);
+		dataPromise = fetch(`/api/${method}/${chat_id}/${author}/${message}`, {
+			method: "POST",
+		}).then((response) => {
+			return response.json();
+		});
 	}
 
 	let errors;
@@ -40,7 +40,7 @@
 		errors = newerrors;
 	});
 
-	let chatId
+	let chatId;
 </script>
 
 <section class="steps">
@@ -54,43 +54,55 @@
 	</ul>
 </section>
 
-<section>
-</section>
+<section />
 <form on:submit|preventDefault={handleSubmit}>
 	<fieldset>
-		Use this form  to either get data from the coin market cap api successfully, or simulate an error
-		<br/>
-		<br/>
+		Use this form to either get data from the coin market cap api successfully,
+		or simulate an error
+		<br />
+		<br />
 		<label>
-			<input type="radio" class="radio" bind:group={method} name="method" value={1} />
+			<input
+				type="radio"
+				class="radio"
+				bind:group={method}
+				name="method"
+				value={1}
+			/>
 			Get Data
 		</label>
 
 		<label>
-			<input type="radio" class="radio" bind:group={method} name="method" value={2} />
+			<input
+				type="radio"
+				class="radio"
+				bind:group={method}
+				name="method"
+				value={2}
+			/>
 			Simulate Error
 		</label>
 		<br />
 		<br />
 
 		<label class="chatid">
-			Chat id
-			<input type="text" name="chat_id" bind:value={chat_id}>
+			<b>Chat id</b>
+			<input type="text" name="chat_id" class="text" bind:value={chat_id} />
 		</label>
 		<br />
 		<br />
 
 		<label class="author">
-			Author
-			<input type="text" name="author" bind:value={author}>
+			<b>Author</b>
+			<input type="text" name="author" class="text" bind:value={author} />
 		</label>
 
 		<br />
 		<br />
 
 		<label class="message">
-			Message
-			<input type="text" name="message" bind:value={message}>
+			<b>Message</b>
+			<input type="text" name="message" class="text" bind:value={message} />
 		</label>
 
 		<br />
@@ -101,12 +113,23 @@
 </form>
 
 <main>
+	<section class="errors">
+		{#if errors}
+			<h1 >
+				Number of simulated errors: {errors.length}
+			</h1>
+			{#each errors as error, i}
+				<Error {...error} number={i + 1} />
+			{/each}
+		{/if}
+	</section>
+
 	<section class="data">
 		{#await dataPromise}
 			Getting data...
 		{:then result}
 			{#if result?.data}
-				<h1>Data collected successfully</h1>
+				<h1 style="text-align:right;">Data collected successfully</h1>
 				{#each result.data as item}
 					<Item
 						id={item.id}
@@ -125,15 +148,6 @@
 				{result.error}
 			{/if}
 		{/await}
-	</section>
-
-	<section class="errors">
-		{#if errors}
-			<h1 style="text-align:right;">Number of simulated errors: {errors.length}</h1>
-			{#each errors as error, i}
-				<Error {...error} number={i+1}/>
-			{/each}
-		{/if}
 	</section>
 </main>
 
@@ -164,6 +178,10 @@
 		width: 5rem;
 	}
 
+	.text {
+		padding: 1rem 0.5rem;
+	}
+
 	fieldset {
 		font-size: 1.2rem;
 		padding: 1rem;
@@ -174,8 +192,9 @@
 	}
 
 	input {
-		height: 1.5rem;
+		height: 2rem;
 		border-radius: 5px;
+		font-size: 1rem;
 	}
 
 	button {
@@ -186,6 +205,6 @@
 	}
 
 	button:hover {
-		background:rgb(130, 128, 250);
+		background: rgb(130, 128, 250);
 	}
 </style>
