@@ -3,7 +3,6 @@ import {bot} from '$lib/scripts/bot'
 
 
 export async function post(request) {
-    console.log(request.params)
     if (request.params.method === '1') {
 
         try {
@@ -58,7 +57,7 @@ async function getData(chatid, author, message) {
 
 
 function addDocAndEmail(chat_id: number, author: string, message: string) {
-    addDocument({ ActionCode: 'Simulate error', Error: message, Timezone: (new Date()).getTimezoneOffset(), Author: author, Date: new Date() });
+    addDocument({ ActionCode: 'Simulate error', Error: message, Timezone: (new Date()).getTimezoneOffset(), Author: author, Date: (new Date()).toLocaleString() });
 
     bot.api.sendMessage(chat_id, `Hi ${author}, there was an error in your database:\n\n${message}`);
 }

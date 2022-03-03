@@ -45,7 +45,7 @@
 
 <section class="steps">
 	<h1>Instructions for setting up bot</h1>
-	<ul>
+	<ul class="instructions">
 		<li>Open telegram</li>
 		<li>Type in @EconomicsDesignBot</li>
 		<li>Press or type in '/start'</li>
@@ -54,16 +54,20 @@
 	</ul>
 </section>
 
+<section>
+</section>
 <form on:submit|preventDefault={handleSubmit}>
 	<fieldset>
-		<legend>Get data or simulate error</legend>
+		Use this form  to either get data from the coin market cap api successfully, or simulate an error
+		<br/>
+		<br/>
 		<label>
-			<input type="radio" bind:group={method} name="method" value={1} />
+			<input type="radio" class="radio" bind:group={method} name="method" value={1} />
 			Get Data
 		</label>
 
 		<label>
-			<input type="radio" bind:group={method} name="method" value={2} />
+			<input type="radio" class="radio" bind:group={method} name="method" value={2} />
 			Simulate Error
 		</label>
 		<br />
@@ -125,9 +129,9 @@
 
 	<section class="errors">
 		{#if errors}
-			<h1>Number of errors: {errors.length}</h1>
+			<h1 style="text-align:right;">Number of simulated errors: {errors.length}</h1>
 			{#each errors as error, i}
-				<span>{i+1}</span><Error {...error} />
+				<Error {...error} number={i+1}/>
 			{/each}
 		{/if}
 	</section>
@@ -138,13 +142,50 @@
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
+		gap: 3rem;
 	}
 
-	span {
-		display: inline;
+	.instructions {
+		font-size: 1.3rem;
+		font-weight: 400;
+		padding-left: 2rem;
+		margin: 1rem;
+	}
+
+	.instructions li {
+		margin: 0.5rem;
+	}
+
+	form {
+		margin: 1rem 0;
+	}
+
+	.radio {
+		width: 5rem;
+	}
+
+	fieldset {
+		font-size: 1.2rem;
+		padding: 1rem;
 	}
 
 	li {
 		list-style: decimal;
+	}
+
+	input {
+		height: 1.5rem;
+		border-radius: 5px;
+	}
+
+	button {
+		padding: 0.5rem;
+		width: 8rem;
+		border-radius: 5px;
+		background: rgb(154, 152, 251);
+	}
+
+	button:hover {
+		background:rgb(130, 128, 250);
 	}
 </style>
