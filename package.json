@@ -32,6 +32,7 @@
   "type": "module",
   "dependencies": {
     "@mtproto/core": "6.1.1",
+    "@sveltejs/adapter-vercel": "^1.0.0-next.45",
     "firebase": "^9.6.7",
     "grammy": "^1.7.0"
   }

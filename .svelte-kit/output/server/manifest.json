@@ -1,0 +1,66 @@
+{
+  ".svelte-kit/build/index.js": {
+    "file": "index.js",
+    "src": ".svelte-kit/build/index.js",
+    "isEntry": true,
+    "imports": [
+      "_index-c31da524.js"
+    ]
+  },
+  "src/routes/api/[method]/[chatid]/[author]/[message].ts": {
+    "file": "entries/endpoints/api/_method_/_chatid_/_author_/_message_.ts.js",
+    "src": "src/routes/api/[method]/[chatid]/[author]/[message].ts",
+    "isEntry": true,
+    "imports": [
+      "_firebase-5ee02f5a.js"
+    ]
+  },
+  "src/routes/__layout.svelte": {
+    "file": "entries/pages/__layout.svelte.js",
+    "src": "src/routes/__layout.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index-c31da524.js"
+    ],
+    "css": [
+      "assets/entries/pages/__layout.svelte-ba1343df.css"
+    ]
+  },
+  ".svelte-kit/runtime/components/error.svelte": {
+    "file": "entries/pages/error.svelte.js",
+    "src": ".svelte-kit/runtime/components/error.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index-c31da524.js"
+    ]
+  },
+  "src/routes/index.svelte": {
+    "file": "entries/pages/index.svelte.js",
+    "src": "src/routes/index.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index-c31da524.js",
+      "_firebase-5ee02f5a.js"
+    ],
+    "css": [
+      "assets/entries/pages/index.svelte-3508b9b1.css"
+    ]
+  },
+  "src/routes/explanation.svelte": {
+    "file": "entries/pages/explanation.svelte.js",
+    "src": "src/routes/explanation.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index-c31da524.js"
+    ],
+    "css": [
+      "assets/entries/pages/explanation.svelte-f825141e.css"
+    ]
+  },
+  "_index-c31da524.js": {
+    "file": "chunks/index-c31da524.js"
+  },
+  "_firebase-5ee02f5a.js": {
+    "file": "chunks/firebase-5ee02f5a.js"
+  }
+}
