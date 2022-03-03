@@ -44,7 +44,8 @@
 </script>
 
 <section class="steps">
-	<h1>Instructions for setting up bot</h1>
+	<h1>Instructions for setting up telegram bot</h1>
+	<p class="group">These instructions will also work after adding the bot to a group</p>
 	<ul class="instructions">
 		<li>Open telegram</li>
 		<li>Type in @EconomicsDesignBot</li>
@@ -57,8 +58,8 @@
 <section />
 <form on:submit|preventDefault={handleSubmit}>
 	<fieldset>
-		Use this form to either get data from the coin market cap api successfully,
-		or simulate an error
+		Use this form to either get data from the coin market cap api successfully and print it next to the error log,
+		or simulate an error.
 		<br />
 		<br />
 		<label>
@@ -69,7 +70,7 @@
 				name="method"
 				value={1}
 			/>
-			Get Data
+			<b>Get Data</b> 
 		</label>
 
 		<label>
@@ -80,34 +81,37 @@
 				name="method"
 				value={2}
 			/>
-			Simulate Error
+			<b>Simulate Error</b> 
 		</label>
 		<br />
 		<br />
 
-		<label class="chatid">
-			<b>Chat id</b>
-			<input type="text" name="chat_id" class="text" bind:value={chat_id} />
+		<div class="text-fields">
+
+			<label class="chatid">
+				<span><b>Chat id</b></span>
+				<input type="text" name="chat_id" class="text" bind:value={chat_id} />
 		</label>
 		<br />
 		<br />
-
+		
 		<label class="author">
-			<b>Author</b>
+			<span><b>Author</b></span>
 			<input type="text" name="author" class="text" bind:value={author} />
 		</label>
-
+		
 		<br />
 		<br />
-
+		
 		<label class="message">
-			<b>Message</b>
+			<span><b>Message</b></span>
 			<input type="text" name="message" class="text" bind:value={message} />
 		</label>
-
+	</div>
+		
 		<br />
 		<br />
-
+		
 		<button type="submit">Submit</button>
 	</fieldset>
 </form>
@@ -174,17 +178,31 @@
 		margin: 1rem 0;
 	}
 
-	.radio {
-		width: 5rem;
+	.text-fields label {
+		display: flex;
+		justify-content: space-between;
+		max-width: 20rem;
 	}
 
 	.text {
 		padding: 1rem 0.5rem;
+		height: 2rem;
 	}
+
+	.radio {
+		width: 5rem;
+	}
+
+
 
 	fieldset {
 		font-size: 1.2rem;
 		padding: 1rem;
+	}
+
+	p.group {
+		margin-top: 0.6rem;
+		font-size: 1.3rem;
 	}
 
 	li {
@@ -192,16 +210,16 @@
 	}
 
 	input {
-		height: 2rem;
 		border-radius: 5px;
 		font-size: 1rem;
 	}
 
 	button {
 		padding: 0.5rem;
-		width: 8rem;
+		width: 10rem;
 		border-radius: 5px;
 		background: rgb(154, 152, 251);
+		font-weight: 800;
 	}
 
 	button:hover {

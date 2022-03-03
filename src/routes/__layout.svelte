@@ -25,7 +25,7 @@
 		display: flex;
 		justify-content: center;
 		height: 5rem;
-		border-bottom: 1px solid black;
+		border-bottom: 1px solid rgb(195, 195, 195);
 		padding: 1rem;
 		background: rgb(75, 102, 160);
 	}

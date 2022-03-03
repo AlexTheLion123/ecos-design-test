@@ -8,7 +8,6 @@ export async function post(request) {
         try {
             const response = await getData(request.params.chatid, request.params.author, request.params.message)
             const data = (await response.json()).data;
-            console.log("no error");
             return {
                 status: 200,
                 body: {
@@ -18,9 +17,6 @@ export async function post(request) {
         } catch (error) {
             addDocAndEmail(request.params.chatid, request.params.author, request.params.message)
 
-
-            // error
-            console.log("THERE WAS AN ERROR")
             return {
                 status: 400,
                 body: { error }
